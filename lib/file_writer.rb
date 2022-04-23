@@ -1,6 +1,5 @@
 # lib/file_writer.rb
 require 'pry'
-require './lib/night_writer'
 
 class FileWriter
   attr_accessor :file_read,

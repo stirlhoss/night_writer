@@ -5,24 +5,9 @@ require 'simplecov'
 require './lib/night_writer'
 
 describe 'night_writer' do
-  it 'exists' do
-    file = NightWriter.new
+  it 'prints the correct mesage' do
+    ARGV = ['message.txt', 'upcase.txt']
 
-    expect(file).to be_an_instance_of NightWriter
-  end
-
-  it 'reads the first file that it takes in' do
-    ARGV = ['message.txt', 'braille.txt']
-    file = NightWriter.new
-
-    expect(file.read).to eq "Here lies the man who's name was writ in hot-dog water.\n"
-  end
-
-  it 'writes into the second file given' do
-    ARGV = ['message.txt', 'braille.txt']
-    file = NightWriter.new
-    file.write_upcase
-
-    expect(ARGV[1].read).to eq "HERE LIES THE MAN WHO'S NAME WAS WRIT IN HOT-DOG WATER.\n"
-  end
+    expect(lib/night_writer).to eq "Created 'upcase.txt' containing 56 characters"
+end
 end
