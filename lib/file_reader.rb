@@ -9,6 +9,8 @@ class FileReader
   end
 
   def read
-    @file_path.read
+    read_file = @file_path.read
+    @file_path.close
+    read_file
   end
 end
