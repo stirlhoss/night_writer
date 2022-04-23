@@ -1,7 +1,6 @@
 # file_writer_spec.rb
 require 'rspec'
 require 'pry'
-require './lib/file_reader'
 require './lib/file_writer'
 
 describe FileWriter do
@@ -13,15 +12,17 @@ describe FileWriter do
 end
 
 describe 'IO' do
-  before :each do
-    @file = FileReader.new
+  it 'reads files' do
+    ARGV = ['message.txt', 'braille.txt']
+    write = FileWriter.new
+
+    expect(write.read).to eq "Here lies the man who's name was writ in hot-dog water.\n"
   end
 
-  it 'reads files and writes into a new file' do
-    read = FileReader.new
+  it 'writes to another file' do
+    ARGV = ['message.txt', 'braille.txt']
     write = FileWriter.new
-    write.file_path = File.open('message.txt', 'w')
 
-    expect(@file.write_file).to eq "HERE LIES THE MAN WHO'S NAME WAS WRIT IN HOT-DOG WATER.\n"
+    expect(write.write_upcase).to eq 56
   end
 end

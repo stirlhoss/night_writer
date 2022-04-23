@@ -1,15 +1,25 @@
 # lib/file_writer.rb
 require 'pry'
-require './lib/file_reader'
 require './lib/night_writer'
 
 class FileWriter
-  attr_accessor :file_path
+  attr_accessor :file_read,
+                :file_write
 
-  def intitialize
-    @file_path = File.new(ARGV[1], 'r')
-  end
+ def initialize
+   @file_read = File.new(ARGV[0], 'r')
+   @file_write = File.new(ARGV[1], 'w')
+ end
 
-  def write_file
-  end
+ def read
+   read_file = @file_read.read
+   @file_read.close
+   read_file
+ end
+
+ def write_upcase
+   write = @file_write.write(@file_read.read.upcase)
+   @file_write.close
+   write
+ end
 end

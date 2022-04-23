@@ -21,7 +21,8 @@ describe 'night_writer' do
   it 'writes into the second file given' do
     ARGV = ['message.txt', 'braille.txt']
     file = NightWriter.new
+    file.write_upcase
 
-    expect(file.write_upcase).to eq "HERE LIES THE MAN WHO'S NAME WAS WRIT IN HOT-DOG WATER.\n"
+    expect(ARGV[1].read).to eq "HERE LIES THE MAN WHO'S NAME WAS WRIT IN HOT-DOG WATER.\n"
   end
 end
