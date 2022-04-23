@@ -1,4 +1,4 @@
-# lib/braille_letter.rb
+# lib/cell.rb
 require 'pry'
 
 class Cell
@@ -10,10 +10,9 @@ class Cell
              3 => [nil, nil]}
   end
 
-def fill(letter)
-  cell[1] = ['O', '.']
-  cell[2] = ['.', '.']
-  cell[3] = ['.', '.']
-
-end
+  def fill(letter)
+    cell[1] = ['O', '.']
+    cell[2] = ['.', '.']
+    cell[3] = ['.', '.']
+  end
 end
