@@ -1,7 +1,6 @@
 # file_reader_spec.rb
 require 'rspec'
 require 'pry'
-# require_relative '../lib/file_reader'
 require './lib/file_reader'
 
 describe FileReader do
