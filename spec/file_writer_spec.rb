@@ -33,16 +33,28 @@ describe 'IO' do
     braille = write.read_to_cell
 
     expect(braille.class).to eq Array
-    expect(braille[0].cell.class).to eq Hash
+    expect(braille[0].class).to eq Hash
+    end
+  end
+
+  describe 'cell_to_row' do
+    it 'reads cell value into row' do
+    ARGV = ['message1.txt', 'braille.txt']
+    write = FileWriter.new
+    braille = write.cell_to_row
+
+
+    expect(braille).to be_an_instance_of Row
     end
   end
 
   describe '#write braille' do
     it 'takes in english, translates and prints braille' do
-    ARGV = ['message2.txt', 'braille.txt']
+    ARGV = ['message2.txt', 'test_braille.txt']
     write = FileWriter.new
+    write.write_braille
 
-    expect(ARGV[1].read).to eq "O.OO.."
+    expect(ARGV[1]).to eq "O.OO.."
     end
   end
 end
