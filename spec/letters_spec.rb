@@ -25,6 +25,7 @@ describe Letters do
                                          3 => ['.', '.']
                                        })
   end
+
     it 'can print just the values' do
       alphabet = Letters.new
 

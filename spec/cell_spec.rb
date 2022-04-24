@@ -2,9 +2,11 @@
 require 'pry'
 require 'rspec'
 require './lib/cell'
+require './lib/cellable'
 
 describe Cell do
   it 'exists' do
+    letters = Letters.new
   cell = Cell.new
 
  expect(cell).to be_an_instance_of Cell
@@ -22,12 +24,13 @@ describe Cell do
 
   it 'can fill cell to match a braille character' do
     cell = Cell.new
-    cell.fill('A')
+    cell.fill('a')
 
     expect(cell.cell).to eq({
                         1 => ['O', '.'],
                         2 => ['.', '.'],
                         3 => ['.', '.']
                       })
+
   end
 end

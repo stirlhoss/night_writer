@@ -1,18 +1,24 @@
 # lib/cell.rb
 require 'pry'
+require './lib/letters'
+require './lib/cellable'
 
 class Cell
-  attr_reader :cell
+  include Cellable
+  attr_reader :cell,
+              :alphabet
 
   def initialize
     @cell = {1 => [nil, nil],
              2 => [nil, nil],
              3 => [nil, nil]}
+    @alphabet = Letters.new
   end
 
   def fill(letter)
-    cell[1] = ['O', '.']
-    cell[2] = ['.', '.']
-    cell[3] = ['.', '.']
+  cell_map = letter.intern
+  cell[1] = @alphabet.letters[cell_map][1]
+  cell[2] = @alphabet.letters[cell_map][2]
+  cell[3] = @alphabet.letters[cell_map][3]
   end
 end
