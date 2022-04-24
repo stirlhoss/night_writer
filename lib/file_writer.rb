@@ -1,5 +1,6 @@
 # lib/file_writer.rb
 require 'pry'
+require './lib/cell'
 
 class FileWriter
   attr_accessor :file_read,
@@ -14,6 +15,12 @@ class FileWriter
    read_file = @file_read.read
    @file_read.close
    read_file
+ end
+
+ def read_to_cell
+   read_file = @file_read.read.chomp.chars
+   read_file.map! { |char| char = Cell.new }
+   binding.pry
  end
 
  def write_upcase
