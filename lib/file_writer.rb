@@ -1,9 +1,11 @@
 # lib/file_writer.rb
 require 'pry'
+require './lib/cell'
 
 class FileWriter
   attr_accessor :file_read,
-                :file_write
+                :file_write,
+                :read_file
 
  def initialize
    @file_read = File.new(ARGV[0], 'r')
@@ -16,8 +18,31 @@ class FileWriter
    read_file
  end
 
+ def read_write_file
+   read_file = @file_write.read
+   @file_write.close
+   read_file
+ end
+
+ def read_to_cell
+   @read_file = @file_read.read.chomp.chars
+   @read_file.map! do |char|
+     char = Cell.new(char)
+   end
+   @read_file.each do |cell|
+     cell.fill(cell.name)
+   end
+ end
+
  def write_upcase
    write = @file_write.write(@file_read.read.upcase)
+   @file_write.close
+   write
+ end
+
+ def write_braille
+   write = @file_write.write(read_to_cell[0].cell.values.join)
+binding.pry
    @file_write.close
    write
  end
