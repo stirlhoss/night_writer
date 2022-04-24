@@ -42,8 +42,7 @@ describe 'IO' do
     ARGV = ['message2.txt', 'braille.txt']
     write = FileWriter.new
 
-    expect(write.write_braille).to eq 1
-
+    expect(ARGV[1].read).to eq "O.OO.."
     end
   end
 end
