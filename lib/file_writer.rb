@@ -25,11 +25,11 @@ class FileWriter
  end
 
  def read_to_cell
-   @read_file = @file_read.read.chomp.chars
-   @read_file.map! do |char|
+   read_file = @file_read.read.chomp.chars
+   read_file.map! do |char|
      char = Cell.new(char)
    end
-   @read_file.each do |cell|
+   read_file.each do |cell|
      cell.fill(cell.name)
    end
  end
