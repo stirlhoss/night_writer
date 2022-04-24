@@ -6,9 +6,11 @@ require './lib/cellable'
 class Cell
   include Cellable
   attr_reader :cell,
-              :alphabet
+              :alphabet,
+              :name
 
-  def initialize
+  def initialize(name)
+    @name = name
     @cell = {1 => [nil, nil],
              2 => [nil, nil],
              3 => [nil, nil]}

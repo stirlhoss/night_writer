@@ -30,10 +30,20 @@ describe 'IO' do
     it 'takes in the string from the file and turns each letter into an empty cell' do
     ARGV = ['message1.txt', 'braille.txt']
     write = FileWriter.new
-    write.read_to_cell
+    braille = write.read_to_cell
 
-    expect(write.class).to eq Array
-    expect(wirte[0].class).to eq Hash
+    expect(braille.class).to eq Array
+    expect(braille[0].cell.class).to eq Hash
     end
-end
+  end
+
+  describe '#write braille' do
+    it 'takes in english, translates and prints braille' do
+    ARGV = ['message2.txt', 'braille.txt']
+    write = FileWriter.new
+
+    expect(write.write_braille).to eq 1
+
+    end
+  end
 end
