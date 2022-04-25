@@ -6,7 +6,10 @@ require './lib/row'
 class FileWriter
   attr_accessor :file_read,
                 :file_write,
-                :read_file
+                :read_file,
+                :row1,
+                :row2,
+                :row3
 
   def initialize
     @file_read = File.new(ARGV[0], 'r')
@@ -36,15 +39,8 @@ class FileWriter
 
   def cell_to_row
     read_to_cell
-    row = Row.make
-    row.contents.each do |cell|
-    binding.pry
-      @read_file.each do |char|
-        cell.fill(char)
-      end
-    end
-    binding.pry
-    row.contents
+    @row1 = Row.make
+    @row1.cell_update(@read_file)
   end
 
   def write_upcase

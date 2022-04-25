@@ -26,6 +26,16 @@ describe Row do
 
   end
 
+  it 'can update a cell based on an array' do
+    row = Row.new
+    row.row_fill
+    message = ['h','e','l','l','o']
+    row.cell_update(message)
+
+    expect(row.contents[2].cell).to eq({1=>["O", "."], 2=>["O", "."], 3=>["O", "."]})
+    expect(row.contents[4].cell).to eq({1=>["O", "."], 2=>[".", "O"], 3=>["O", "."]})
+  end
+
   it 'has a method that returns boolean if row is full' do
     row = Row.new
     row.row_fill

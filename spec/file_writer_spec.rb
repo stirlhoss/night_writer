@@ -27,13 +27,13 @@ describe 'IO' do
   end
 
   describe '#read_to_cell' do
-    it 'takes in the string from the file and turns each letter into an empty cell' do
+    it 'takes in the string from the file and turns it into an array of characters' do
     ARGV = ['message1.txt', 'braille.txt']
     write = FileWriter.new
     braille = write.read_to_cell
 
     expect(braille.class).to eq Array
-    expect(braille[0].class).to eq Hash
+    expect(braille[0].class).to eq String
     end
   end
 
@@ -41,10 +41,13 @@ describe 'IO' do
     it 'reads cell value into row' do
     ARGV = ['message1.txt', 'braille.txt']
     write = FileWriter.new
-    braille = write.cell_to_row
+    write.cell_to_row
 
-
-    expect(braille).to be_an_instance_of Row
+    expect(write.row1.contents[0].cell).to eq({1=>["O", "."], 2=>["O", "O"], 3=>[".", "."]})
+    expect(write.row1.contents[1].cell).to eq({1=>["O", "."], 2=>[".", "O"], 3=>[".", "."]})
+    expect(write.row1.contents[2].cell).to eq({1=>["O", "."], 2=>["O", "."], 3=>["O", "."]})
+    expect(write.row1.contents[3].cell).to eq({1=>["O", "."], 2=>["O", "."], 3=>["O", "."]})
+    expect(write.row1.contents[4].cell).to eq({1=>["O", "."], 2=>[".", "O"], 3=>["O", "."]})
     end
   end
 
