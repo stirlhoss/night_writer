@@ -47,6 +47,16 @@ describe Row do
     expect(row.row_full?).to eq true
   end
 
+  it 'can determine how many rows we will need based on the message that is passed to it' do
+    row = Row.new
+    message = "here lies the man whos name was writ in hot dog water"
+    another = "xxxxxxxxxxxxxxxxxxxx"
+
+    expect(row.row_count(message)).to eq 3
+    expect(row.row_count(another)).to eq 1
+
+  end
+
   it 'can make new rows' do
     row = Row.make
 

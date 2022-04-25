@@ -52,7 +52,7 @@ describe 'IO' do
   end
 
   describe 'arrange_braille' do
-    xit 'arranges the braille into arrays that can be printed' do
+    it 'arranges the braille into arrays that can be printed' do
     ARGV = ['message1.txt', 'braille.txt']
     write = FileWriter.new
     write.arrange_braille
