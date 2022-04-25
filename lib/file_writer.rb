@@ -30,17 +30,27 @@ class FileWriter
 
   def read_to_cell
     @read_file = @file_read.read.chomp.chars
-    # @read_file.map! do |char|
-    #   cell = Cell.new
-    #   cell.fill(char)
-    #   cell.cell
-  # end
   end
 
   def cell_to_row
     read_to_cell
     @row1 = Row.make
     @row1.cell_update(@read_file)
+  end
+
+  def arrange_braille
+    @un = []
+    @du = []
+    @twa = []
+    cell_to_row
+    @row1.contents.each do |cell|
+      @un << cell.cell[1]
+      @du << cell.cell[2]
+      @twa << cell.cell[3]
+    end
+    @un.join + "\n"
+    @un.join + "\n"
+    @twa.join + "\n"
   end
 
   def write_upcase
@@ -50,7 +60,9 @@ class FileWriter
   end
 
   def write_braille
-    write = @file_write.write(read_to_cell[0].values.join)
+    write = @file_write.write(@un.join + "\n")
+    write = @file_write.write(@du.join + "\n")
+    write = @file_write.write(@twa.join + "\n")
     @file_write.close
     write
   end

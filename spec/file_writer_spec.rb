@@ -51,10 +51,22 @@ describe 'IO' do
     end
   end
 
-  describe '#write braille' do
+  describe 'arrange_braille' do
+    xit 'arranges the braille into arrays that can be printed' do
+    ARGV = ['message1.txt', 'braille.txt']
+    write = FileWriter.new
+    write.arrange_braille
+
+    expect(write).to eq Hash
+    
+    end
+  end
+
+  describe '#write_braille' do
     it 'takes in english, translates and prints braille' do
     ARGV = ['message2.txt', 'test_braille.txt']
     write = FileWriter.new
+    write.arrange_braille
     write.write_braille
 
     expect(ARGV[1]).to eq "O.OO.."
