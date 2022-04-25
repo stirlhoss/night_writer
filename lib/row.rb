@@ -32,11 +32,11 @@ class Row
   end
 
   def row_count(text)
-    target_row = text.length / 20
+    @target_row = text.length / 20
     extra_row = text.length % 20
     if extra_row != 0
-      target_row + 1
-    else target_row
+      @target_row + 1
+    else @target_row
     end
   end
 
