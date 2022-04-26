@@ -1,13 +1,11 @@
 # lib/file_writer.rb
 require 'pry'
-require './lib/row'
 require './lib/organiser'
 
 class FileWriter
   attr_accessor :file_read,
                 :file_write,
-                :read_file,
-                :message
+                :read_file
 
   def initialize
     @file_read = File.new(ARGV[0], 'r')
@@ -19,11 +17,6 @@ class FileWriter
     @file_read.close
     @read_file
   end
-
-  # def self.read_to_cell
-  #   @message = @file_read.read.chomp
-  #   @message = @message.chars
-  # end
 
   def write_braille(message)
     write = @file_write.write(message)

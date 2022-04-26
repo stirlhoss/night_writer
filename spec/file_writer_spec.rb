@@ -15,7 +15,7 @@ end
 
 describe 'IO' do
   it 'reads files' do
-    ARGV = ['message.txt', 'braille.txt']
+    ARGV = ['message.txt', 'test_braille.txt']
     write = FileWriter.new
 
     expect(write.read).to eq "what do you do with a drunken sailor what do you do with a drunken sailor\n"

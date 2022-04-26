@@ -5,8 +5,8 @@ require './lib/letters'
 class FileReader
   attr_accessor :file_read,
                 :file_write,
-                :read_file,
-                :message
+                :read_file
+
 
   def initialize
     @file_read = File.new(ARGV[0], 'r')
@@ -26,8 +26,9 @@ class FileReader
     c = characters - ["\n"]
     elements = c.each_slice(2).to_a
     character_count = elements.length / 3
+    row_count = character_count / 20
     shifter = 0
-    4.times do
+    row_count.times do
       20.times do
       braille_cells[shifter] = {1 => elements.fetch(index + 0),
                               2 => elements.fetch(index + 20),
