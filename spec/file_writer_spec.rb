@@ -19,13 +19,6 @@ describe 'IO' do
     expect(write.read).to eq "Here lies the man who's name was writ in hot-dog water.\n"
   end
 
-  it 'writes to another file' do
-    ARGV = ['message.txt', 'braille.txt']
-    write = FileWriter.new
-
-    expect(write.write_upcase).to eq 56
-  end
-
   describe '#read_to_cell' do
     it 'takes in the string from the file and turns it into an array of characters' do
     ARGV = ['message1.txt', 'braille.txt']
