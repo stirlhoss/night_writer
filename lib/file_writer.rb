@@ -2,6 +2,7 @@
 require 'pry'
 require './lib/cell'
 require './lib/row'
+require './lib/organiser'
 
 class FileWriter
   attr_accessor :file_read,
@@ -15,9 +16,9 @@ class FileWriter
   end
 
   def read
-    read_file = @file_read.read
+    @read_file = @file_read.read
     @file_read.close
-    read_file
+    @read_file
   end
 
   def read_write_file
@@ -30,8 +31,8 @@ class FileWriter
     @message = @file_read.read.chomp.chars
   end
 
-  def write_braille
-    write = @file_write.write(@to_print.values.join)
+  def write_braille(message)
+    write = @file_write.write(message)
     @file_write.close
     write
   end

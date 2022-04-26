@@ -1,5 +1,6 @@
 # row_spec.rb
-
+require 'simplecov'
+SimpleCov.start
 require 'pry'
 require 'rspec'
 require './lib/cell'
@@ -25,6 +26,18 @@ describe Row do
                                        })
 
   end
+
+    it 'reads cell value into row' do
+    ARGV = ['message1.txt', 'braille.txt']
+    write = FileWriter.new
+    write.cell_to_row
+
+    expect(write.row1.contents[0].cell).to eq({1=>["O", "."], 2=>["O", "O"], 3=>[".", "."]})
+    expect(write.row1.contents[1].cell).to eq({1=>["O", "."], 2=>[".", "O"], 3=>[".", "."]})
+    expect(write.row1.contents[2].cell).to eq({1=>["O", "."], 2=>["O", "."], 3=>["O", "."]})
+    expect(write.row1.contents[3].cell).to eq({1=>["O", "."], 2=>["O", "."], 3=>["O", "."]})
+    expect(write.row1.contents[4].cell).to eq({1=>["O", "."], 2=>[".", "O"], 3=>["O", "."]})
+    end
 
   it 'can update a cell based on an array' do
     row = Row.new

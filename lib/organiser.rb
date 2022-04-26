@@ -32,12 +32,6 @@ class Organiser
     end
   end
 
-  def cell_to_row
-    read_file = FileWriter.read_to_cell
-    @row = Row.make
-    @row.cell_update(read_file)
-  end
-
   def extend_cell_to_row(message)
     array = message.chars
     org.each do |row|
@@ -61,12 +55,24 @@ class Organiser
   end
 
   def arrange_print(message)
+    arrange_braille(message)
     print_array = []
     @target_row.times do
       @to_print.each do | k, v |
         print_array << v.shift(20)
       end
     end
-    print_array.join.scan(/.{20}|.+/).join("\n")
+    print_array.each do |row|
+      row.each do |mini_cell|
+        mini_cell.map! do |el|
+          if el.nil?
+            el = '.'
+          else
+            el
+          end
+        end
+      end
+    end
+    e = print_array.join.scan(/.{40}|.+/).join("\n")
   end
 end

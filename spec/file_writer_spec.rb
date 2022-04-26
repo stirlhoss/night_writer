@@ -1,4 +1,6 @@
 # file_writer_spec.rb
+require 'simplecov'
+SimpleCov.start
 require 'rspec'
 require 'pry'
 require './lib/file_writer'
@@ -59,8 +61,13 @@ describe 'IO' do
     it 'takes in english, translates and prints braille' do
     ARGV = ['message2.txt', 'test_braille.txt']
     write = FileWriter.new
-    write.arrange_braille
-    write.write_braille
+    message = write.read.chomp
+    org = Organiser.new
+    org.make(message)
+    org.arrange_print(message)
+
+
+    write.write_braille(org.arrange_print(message))
 
     expect(ARGV[1]).to eq "O.OO.."
     end
