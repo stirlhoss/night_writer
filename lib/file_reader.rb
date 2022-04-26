@@ -1,8 +1,6 @@
 # lib/file_reader.rb
-
 require 'pry'
-require './lib/row'
-require './lib/organiser'
+require './lib/letters'
 
 class FileReader
   attr_accessor :file_read,
