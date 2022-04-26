@@ -1,6 +1,5 @@
 # lib/file_writer.rb
 require 'pry'
-# require './lib/cell'
 require './lib/row'
 require './lib/organiser'
 

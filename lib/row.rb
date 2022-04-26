@@ -36,8 +36,8 @@ class Row
     extra_row = text.length % 20
     if extra_row != 0
       @target_row + 1
-    else @target_row
     end
+    @target_row
   end
 
   def self.make
