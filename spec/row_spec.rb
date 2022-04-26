@@ -1,5 +1,6 @@
 # row_spec.rb
-
+require 'simplecov'
+SimpleCov.start
 require 'pry'
 require 'rspec'
 require './lib/cell'
@@ -23,7 +24,16 @@ describe Row do
                                          2 => [nil, nil],
                                          3 => [nil, nil]
                                        })
+  end
 
+  it 'can update a cell based on an array' do
+    row = Row.new
+    row.row_fill
+    message = ['h', 'e', 'l', 'l', 'o']
+    row.cell_update(message)
+
+    expect(row.contents[2].cell).to eq({ 1 => ["O", "."], 2 => ["O", "."], 3 => ["O", "."] })
+    expect(row.contents[4].cell).to eq({ 1 => ["O", "."], 2 => [".", "O"], 3 => ["O", "."] })
   end
 
   it 'has a method that returns boolean if row is full' do
@@ -37,16 +47,24 @@ describe Row do
     expect(row.row_full?).to eq true
   end
 
+  it 'can determine how many rows we will need based on the message that is passed to it' do
+    row = Row.new
+    message = "here lies the man whos name was writ in hot dog water"
+    another = "xxxxxxxxxxxxxxxxxxxx"
+
+    expect(row.row_count(message)).to eq 3
+    expect(row.row_count(another)).to eq 1
+  end
+
   it 'can make new rows' do
     row = Row.make
 
     expect(row).to be_an_instance_of Row
     expect(row.contents.length).to eq 20
     expect(row.contents[0].cell).to eq({
-                        1 => [nil, nil],
-                        2 => [nil, nil],
-                        3 => [nil, nil]
-                      })
-
+                                         1 => [nil, nil],
+                                         2 => [nil, nil],
+                                         3 => [nil, nil]
+                                       })
   end
 end
