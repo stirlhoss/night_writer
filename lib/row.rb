@@ -40,12 +40,6 @@ class Row
     end
   end
 
-  def cell_to_row
-    read_file = FileWriter.read_to_cell
-    @row = Row.make
-    @row.cell_update(read_file)
-  end
-
   def self.make
     row = Row.new
     row.row_fill

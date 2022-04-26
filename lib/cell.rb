@@ -6,9 +6,9 @@ class Cell
   attr_reader :cell
 
   def initialize
-    @cell = {1 => [nil, nil],
-             2 => [nil, nil],
-             3 => [nil, nil]}
+    @cell = { 1 => [nil, nil],
+              2 => [nil, nil],
+              3 => [nil, nil] }
   end
 
   def fill(letter)

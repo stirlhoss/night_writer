@@ -1,6 +1,6 @@
 # lib/file_writer.rb
 require 'pry'
-require './lib/cell'
+# require './lib/cell'
 require './lib/row'
 require './lib/organiser'
 
@@ -21,15 +21,10 @@ class FileWriter
     @read_file
   end
 
-  def read_write_file
-    read_file = @file_write.read
-    @file_write.close
-    read_file
-  end
-
-  def self.read_to_cell
-    @message = @file_read.read.chomp.chars
-  end
+  # def self.read_to_cell
+  #   @message = @file_read.read.chomp
+  #   @message = @message.chars
+  # end
 
   def write_braille(message)
     write = @file_write.write(message)

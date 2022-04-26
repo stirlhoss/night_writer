@@ -1,10 +1,10 @@
 # lib/organiser.rb
 require 'pry'
 require './lib/file_writer'
-require './lib/row'
-require './lib/cell'
+# require './lib/row'
+# require './lib/cell'
 
-#organiser will hold all of the rows and make new rows when a row is full.
+# organiser will hold all of the rows and make new rows when a row is full.
 class Organiser
   attr_reader :rows,
               :org
@@ -17,12 +17,13 @@ class Organiser
     org.length
   end
 
-   def row_count(text)
+  def row_count(text)
     @target_row = text.length / 20
     extra_row = text.length % 20
     if extra_row != 0
       @target_row = @target_row + 1
-    else @target_row
+    else
+      @target_row
     end
   end
 
@@ -41,10 +42,9 @@ class Organiser
 
   def arrange_braille(message)
     @to_print = { :one => [],
-                 :two => [],
-                 :three => [] }
+                  :two => [],
+                  :three => [] }
     extend_cell_to_row(message)
-    # until row_full?
     org.each do |row|
       row.contents.each do |cell|
         @to_print[:one] << cell.cell[1]
@@ -56,13 +56,18 @@ class Organiser
 
   def arrange_print(message)
     arrange_braille(message)
-    print_array = []
+    @print_array = []
     @target_row.times do
-      @to_print.each do | k, v |
-        print_array << v.shift(20)
+      @to_print.each do |k, v|
+        @print_array << v.shift(20)
       end
     end
-    print_array.each do |row|
+    fill_with_blanks
+    @print_array.join.scan(/.{40}|.+/).join("\n")
+  end
+
+  def fill_with_blanks
+    @print_array.each do |row|
       row.each do |mini_cell|
         mini_cell.map! do |el|
           if el.nil?
@@ -73,6 +78,5 @@ class Organiser
         end
       end
     end
-    e = print_array.join.scan(/.{40}|.+/).join("\n")
   end
 end
