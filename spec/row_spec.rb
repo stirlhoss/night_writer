@@ -52,7 +52,7 @@ describe Row do
     message = "here lies the man whos name was writ in hot dog water"
     another = "xxxxxxxxxxxxxxxxxxxx"
 
-    expect(row.row_count(message)).to eq 3
+    expect(row.row_count(message)).to eq 2
     expect(row.row_count(another)).to eq 1
   end
 
